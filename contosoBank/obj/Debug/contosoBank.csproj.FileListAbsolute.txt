@@ -1,0 +1,49 @@
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Bot Application1.dll.config
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Bot Application1.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Bot Application1.pdb
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Autofac.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Chronic.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Microsoft.Bot.Builder.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Microsoft.Bot.Connector.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Microsoft.IdentityModel.Protocol.Extensions.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Microsoft.Rest.ClientRuntime.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Microsoft.WindowsAzure.Configuration.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Newtonsoft.Json.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\System.IdentityModel.Tokens.Jwt.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\System.Net.Http.Formatting.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\System.Web.Http.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\System.Web.Http.WebHost.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Autofac.xml
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Microsoft.Bot.Builder.xml
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Microsoft.Bot.Connector.xml
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Microsoft.IdentityModel.Protocol.Extensions.pdb
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Microsoft.IdentityModel.Protocol.Extensions.xml
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Microsoft.Rest.ClientRuntime.xml
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Microsoft.WindowsAzure.Configuration.xml
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Newtonsoft.Json.xml
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\System.IdentityModel.Tokens.Jwt.pdb
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\System.IdentityModel.Tokens.Jwt.xml
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\System.Net.Http.Formatting.xml
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\System.Web.Http.xml
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\System.Web.Http.WebHost.xml
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\ar\Microsoft.Bot.Builder.resources.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\en\Microsoft.Bot.Builder.resources.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\es\Microsoft.Bot.Builder.resources.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\fa\Microsoft.Bot.Builder.resources.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\fr\Microsoft.Bot.Builder.resources.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\ja\Microsoft.Bot.Builder.resources.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\ru\Microsoft.Bot.Builder.resources.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\zh-hans\Microsoft.Bot.Builder.resources.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\obj\Debug\contosoBank.csprojResolveAssemblyReference.cache
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\obj\Debug\Bot Application1.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\obj\Debug\Bot Application1.pdb
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Microsoft.ProjectOxford.Vision.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\obj\Debug\contosoBank.csproj.App.config
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Microsoft.WindowsAzure.Mobile.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Microsoft.WindowsAzure.Mobile.Ext.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\System.Net.Http.Extensions.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\System.Net.Http.Primitives.dll
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Microsoft.WindowsAzure.Mobile.xml
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Microsoft.WindowsAzure.Mobile.Ext.xml
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\System.Net.Http.Extensions.xml
+\\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\System.Net.Http.Primitives.xml
