@@ -26,7 +26,7 @@ namespace contosoBank
             {
                 ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
                 // calculate something for us to return
-                /*int length = (activity.Text ?? string.Empty).Length;
+                int length = (activity.Text ?? string.Empty).Length;
 
                 // return our reply to the user
                 Activity reply = activity.CreateReply($"You sent {activity.Text} which was {length} characters");
@@ -93,7 +93,7 @@ using contosoBank.DataModels;
 using contosoBank;
 using contosoBank.Models;
 
-namespace Weather_Bot
+namespace contosoBank
 {
     [BotAuthentication]
     public class MessagesController : ApiController
@@ -108,9 +108,10 @@ namespace Weather_Bot
             {
                 ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
 
-                StateClient stateClient = activity.GetStateClient();
-                BotData userData = await stateClient.BotState.GetUserDataAsync(activity.ChannelId, activity.From.Id);
+                StateClient stateClient = activity.GetStateClient();//Day 2.3 - 1.Setup State Client
+                BotData userData = await stateClient.BotState.GetUserDataAsync(activity.ChannelId, activity.From.Id);//2.Grab users data
 
+                //3.Get/Set users property data
                 var userMessage = activity.Text;
 
                 string endOutput = "Hello";
@@ -125,6 +126,7 @@ namespace Weather_Bot
                     userData.SetProperty<bool>("SentGreeting", true);
                     await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
                 }
+                //
 
                 bool isWeatherRequest = true;
 
@@ -192,21 +194,21 @@ namespace Weather_Bot
 
                 }
 
-                if (userMessage.ToLower().Equals("get timelines"))
+                if (userMessage.ToLower().Equals("get account"))
                 {
-                    List<Timeline> timelines = await AzureManager.AzureManagerInstance.GetTimelines();
+                    List<Account> accounts = await AzureManager.AzureManagerInstance.GetAccounts();
                     endOutput = "";
-                    foreach (Timeline t in timelines)
+                    foreach (Account a in accounts)
                     {
-                        endOutput += "[" + t.Date + "] Happiness " + t.Happiness + ", Sadness " + t.Sadness + "\n\n";
+                        endOutput += "[" + a.Date + "] Happiness " + a.Happiness + ", Sadness " + a.Sadness + "\n\n";
                     }
                     isWeatherRequest = false;
 
                 }
 
-                if (userMessage.ToLower().Equals("new timeline"))
+                if (userMessage.ToLower().Equals("new account"))
                 {
-                    Timeline timeline = new Timeline()
+                    Account account = new Account()
                     {
                         Anger = 0.1,
                         Contempt = 0.2,
@@ -219,13 +221,14 @@ namespace Weather_Bot
                         Date = DateTime.Now
                     };
 
-                    await AzureManager.AzureManagerInstance.AddTimeline(timeline);
+                    await AzureManager.AzureManagerInstance.AddAccount(account);
 
                     isWeatherRequest = false;
 
-                    endOutput = "New timeline added [" + timeline.Date + "]";
+                    endOutput = "New account added [" + account.Date + "]";
                 }
 
+                //3.
                 if (!isWeatherRequest)
                 {
                     // return our reply to the user
@@ -237,18 +240,21 @@ namespace Weather_Bot
                 else
                 {
 
-                    WeatherObject.RootObject rootObject;
+                    CurrencyRate.RootObject rootObject;
 
                     HttpClient client = new HttpClient();
-                    string x = await client.GetStringAsync(new Uri("http://api.openweathermap.org/data/2.5/weather?q=" + activity.Text + "&units=metric&APPID=440e3d0ee33a977c5e2fff6bc12448ee"));
+                    string x = await client.GetStringAsync(new Uri("http://api.fixer.io/latest?base=NZD"));//baseCurrency
 
-                    rootObject = JsonConvert.DeserializeObject<WeatherObject.RootObject>(x);
+                    rootObject = JsonConvert.DeserializeObject<CurrencyRate.RootObject>(x);
 
-                    string cityName = rootObject.name;
+                    //string baseCurrency = rootObject.@base;
+                    string date = rootObject.date;
+                    /*
                     string temp = rootObject.main.temp + "°C";
                     string pressure = rootObject.main.pressure + "hPa";
                     string humidity = rootObject.main.humidity + "%";
                     string wind = rootObject.wind.deg + "°";
+                    */
 
                     // added fields
                     string icon = rootObject.weather[0].icon;

@@ -47,3 +47,52 @@
 \\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\Microsoft.WindowsAzure.Mobile.Ext.xml
 \\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\System.Net.Http.Extensions.xml
 \\mac\home\documents\visual studio 2015\Projects\contosoBank\contosoBank\bin\System.Net.Http.Primitives.xml
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Bot Application1.dll.config
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Bot Application1.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Bot Application1.pdb
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Autofac.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Chronic.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Microsoft.Bot.Builder.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Microsoft.Bot.Connector.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Microsoft.IdentityModel.Protocol.Extensions.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Microsoft.ProjectOxford.Vision.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Microsoft.Rest.ClientRuntime.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Microsoft.WindowsAzure.Configuration.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Microsoft.WindowsAzure.Mobile.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Microsoft.WindowsAzure.Mobile.Ext.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Newtonsoft.Json.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\System.IdentityModel.Tokens.Jwt.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\System.Net.Http.Extensions.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\System.Net.Http.Formatting.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\System.Net.Http.Primitives.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\System.Web.Http.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\System.Web.Http.WebHost.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Autofac.xml
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Microsoft.Bot.Builder.xml
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Microsoft.Bot.Connector.xml
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Microsoft.IdentityModel.Protocol.Extensions.pdb
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Microsoft.IdentityModel.Protocol.Extensions.xml
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Microsoft.Rest.ClientRuntime.xml
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Microsoft.WindowsAzure.Configuration.xml
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Microsoft.WindowsAzure.Mobile.xml
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Microsoft.WindowsAzure.Mobile.Ext.xml
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\Newtonsoft.Json.xml
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\System.IdentityModel.Tokens.Jwt.pdb
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\System.IdentityModel.Tokens.Jwt.xml
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\System.Net.Http.Extensions.xml
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\System.Net.Http.Formatting.xml
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\System.Net.Http.Primitives.xml
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\System.Web.Http.xml
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\System.Web.Http.WebHost.xml
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\ar\Microsoft.Bot.Builder.resources.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\en\Microsoft.Bot.Builder.resources.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\es\Microsoft.Bot.Builder.resources.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\fa\Microsoft.Bot.Builder.resources.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\fr\Microsoft.Bot.Builder.resources.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\ja\Microsoft.Bot.Builder.resources.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\ru\Microsoft.Bot.Builder.resources.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\bin\zh-hans\Microsoft.Bot.Builder.resources.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\obj\Debug\contosoBank.csproj.App.config
+\\Mac\Home\Desktop\contosoBank\contosoBank\obj\Debug\contosoBank.csprojResolveAssemblyReference.cache
+\\Mac\Home\Desktop\contosoBank\contosoBank\obj\Debug\Bot Application1.dll
+\\Mac\Home\Desktop\contosoBank\contosoBank\obj\Debug\Bot Application1.pdb

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace contosoBank.DataModels
 {
-    public class Timeline
+    public class Account
     {
         [JsonProperty(PropertyName = "Id")]
         public string ID { get; set; }

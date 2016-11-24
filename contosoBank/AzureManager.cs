@@ -57,19 +57,19 @@ using System.Text;
 using System.Threading.Tasks;
 using contosoBank.DataModels;
 
-namespace Weather_Bot
+namespace contosoBank
 {
     public class AzureManager
     {
 
         private static AzureManager instance;
         private MobileServiceClient client;
-        private IMobileServiceTable<Timeline> timelineTable;
+        private IMobileServiceTable<Account> accountTable;//
 
         private AzureManager()
         {
             this.client = new MobileServiceClient("http://contosobankmsa.azurewebsites.net");
-            this.timelineTable = this.client.GetTable<Timeline>();
+            this.accountTable = this.client.GetTable<Account>();
         }
 
         public MobileServiceClient AzureClient
@@ -90,14 +90,14 @@ namespace Weather_Bot
             }
         }
 
-        public async Task AddTimeline(Timeline timeline)
+        public async Task AddAccount(Account account)
         {
-            await this.timelineTable.InsertAsync(timeline);
+            await this.accountTable.InsertAsync(account);
         }
 
-        public async Task<List<Timeline>> GetTimelines()
+        public async Task<List<Account>> GetAccounts()
         {
-            return await this.timelineTable.ToListAsync();
+            return await this.accountTable.ToListAsync();
         }
     }
 }
