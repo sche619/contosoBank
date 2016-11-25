@@ -41,11 +41,11 @@ namespace contosoBank
                     replyToConversation.Type = "message";
                     replyToConversation.Attachments = new List<Attachment>();
                     List<CardImage> cardImages = new List<CardImage>();
-                    cardImages.Add(new CardImage(url: "https://cdn2.iconfinder.com/data/icons/ios-7-style-metro-ui-icons/512/MetroUI_iCloud.png"));
+                    cardImages.Add(new CardImage(url: "https://cdn2.f-cdn.com/contestentries/699966/18283068/57a8de35ca18f_thumb900.jpg"));
                     List<CardAction> cardButtons = new List<CardAction>();
                     CardAction plButton = new CardAction()
                     {
-                        Title = "Account info",
+                        Title = "Account Info",
                         Type = "postBack",
                         Value = "my Account"//user display
                     };
@@ -53,9 +53,9 @@ namespace contosoBank
 
                     CardAction Button = new CardAction()
                     {
-                        Title = "create new Account",
+                        Title = "Create New Account",
                         Type = "postBack",
-                        Value = "create new Account"//user display
+                        Value = "new account"//user display
                     };
                     cardButtons.Add(Button);
 
@@ -103,32 +103,39 @@ namespace contosoBank
                     foreach (Account a in accounts)
                     {
                         //endOutput += "[" + a.Date + "] Happiness " + a.Happiness + ", Sadness " + a.Sadness + "\n\n";
-                        endOutput += "[" + a.accountID + "] " + a.accountName + " balance: $" + a.accountMoney + "\n\n";
+                        endOutput += "[" + a.accountID + "] " + a.accountName + " balance: $" + a.accountBalance + "\n\n";
                     }
                     isAccountRequest = false;
                 }
 
-                if (userMessage.ToLower().Equals("new account"))
+                if (userData.GetProperty<bool>("NameEntered"))
                 {
+                    userData.SetProperty<bool>("NameEntered", false);
+
+                    int id = 0;
+                    //st<Account> accounts = await AzureManager.AzureManagerInstance.GetAccounts();
+                    endOutput = "here";
+
+                    id += 1;
+                    endOutput = "AccountID:[" + id + "] " + userMessage + " $0.00";
+
                     Account account = new Account()
                     {
-                        accountID = 00000001,
-                        //accountName = nickname,
-                        accountMoney = 0.00,
-                        /*
-                        Happiness = 0.3,
-                        Neutral = 0.2,
-                        Sadness = 0.4,
-                        Surprise = 0.4,*/
-                        Date = DateTime.Now
+                        accountID = id,
+                        accountName = userMessage,
+                        accountBalance = 0.00,
                     };
-
-                    await AzureManager.AzureManagerInstance.AddAccount(account);
-
-                    isAccountRequest = false;
-
-                    endOutput = "New account added [" + account.accountID + "]";
+                    //await AzureManager.AzureManagerInstance.AddAccount(account);
+                    await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
                 }
+
+                    if (userMessage.ToLower().Equals("new account"))
+                {
+                    endOutput = "Please enter a name for the account. ";
+                    userData.SetProperty<bool>("NameEntered", true);
+                    await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
+                }
+                
 
                 if (userData.GetProperty<bool>("setCurrency"))
                 {
