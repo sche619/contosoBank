@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using contosoBank.DataModels;
 using contosoBank;
 using contosoBank.Models;
+using System.Reflection;
 
 namespace contosoBank
 {
@@ -157,10 +158,59 @@ namespace contosoBank
 
                     rootObject = JsonConvert.DeserializeObject<CurrencyRate.RootObject>(x);
 
-                    endOutput = rootObject.rates.USD.ToString();
-                    //endOutput = "currency";
+                    PropertyInfo prop = typeof(CurrencyRate.Rates).GetProperty(exchangeCurrency);
+                    var value = prop.GetValue(rootObject.rates, null);
+                    //endOutput = rootObject.rates.USD.ToString();
+                    endOutput = value.ToString();
+
+                    await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
+                }
+
+                if (userData.GetProperty<bool>("UsingBase"))
+                {
+                    userData.SetProperty<bool>("UsingBase", false);
                     await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
 
+                    CurrencyRate.RootObject rootObject;
+
+                    HttpClient client = new HttpClient();
+                    string x = await client.GetStringAsync(new Uri("http://api.fixer.io/latest?base=" + userData.GetProperty<string>("defaultBase")));//baseCurrency
+
+                    rootObject = JsonConvert.DeserializeObject<CurrencyRate.RootObject>(x);
+
+                    PropertyInfo prop = typeof(CurrencyRate.Rates).GetProperty(userMessage);
+                    var value = prop.GetValue(rootObject.rates, null);
+                    endOutput = value.ToString();
+
+                    //await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
+
+                }
+
+                if (userMessage.ToLower().Equals("use base currency"))
+                {
+                    if (userData.GetProperty<string>("defaultBase")!=null)
+                    {
+                        endOutput = "Please enter the currency you want to exchange into";
+                        userData.SetProperty<bool>("UsingBase", true);
+                        await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
+                    }
+                }
+
+                    if (userData.GetProperty<bool>("setBase"))
+                {
+                    userData.SetProperty<bool>("setBase", false);
+                    userData.SetProperty<string>("defaultBase", userMessage);
+                    userData.SetProperty<bool>("BaseExists", true);
+                    await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
+                    endOutput="Your base currency is now set as "+ userData.GetProperty<string>("defaultBase")+".";
+
+                }
+
+                if (userMessage.ToLower().Equals("set base currency"))
+                {
+                    endOutput = "Enter the currency please";
+                    userData.SetProperty<bool>("setBase", true);
+                    await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
                 }
 
                 if (userMessage.ToLower().Equals("exchange rate"))
