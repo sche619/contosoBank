@@ -78,22 +78,10 @@ namespace contosoBank
                 if (userMessage.ToLower().Contains("clear"))
                 {
                     endOutput = "User data cleared";
+                    //userData.SetProperty<string>("defaultBase", null);
                     await stateClient.BotState.DeleteStateForUserAsync(activity.ChannelId, activity.From.Id);
-                    isAccountRequest = false;
                 }
-
-                //if (userMessage.Length > 12)
-                //{
-                //    if (userMessage.ToLower().Substring(0, 11).Equals("set account"))
-                //    {
-                //        string defaultAccount = userMessage.Substring(12);
-                //        userData.SetProperty<string>("DefaultAccount", defaultAccount);
-                //        await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
-                //        endOutput = defaultAccount;
-                //        isAccountRequest = false;
-                //    }
-                //}
-
+                                
                 if (userMessage.ToLower().Equals("my account"))
                 {
                     string defaultAccount = userData.GetProperty<string>("DefaultAccount");
@@ -194,6 +182,10 @@ namespace contosoBank
                         userData.SetProperty<bool>("UsingBase", true);
                         await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
                     }
+                    else
+                    {
+                        endOutput = "Base Currency does not exist. Please set the base currency. ";
+                    }
                 }
 
                     if (userData.GetProperty<bool>("setBase"))
@@ -218,11 +210,11 @@ namespace contosoBank
                     endOutput = "Please enter a base currency and an exchange currency";
                     userData.SetProperty<bool>("setCurrency", true);
                     await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
-
                 }
 
                 Activity infoReply = activity.CreateReply(endOutput);
                 await connector.Conversations.ReplyToActivityAsync(infoReply);
+
             }
 
             else
