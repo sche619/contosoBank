@@ -94,3 +94,4 @@
 \\Mac\Home\Desktop\contosoBank\contosoBank\obj\Release\contosoBank.csproj.App.config
 \\Mac\Home\Desktop\contosoBank\contosoBank\obj\Release\Bot Application1.dll
 \\Mac\Home\Desktop\contosoBank\contosoBank\obj\Release\Bot Application1.pdb
+\\Mac\Home\Desktop\contosoBank\contosoBank\obj\Release\contosoBank.csprojResolveAssemblyReference.cache

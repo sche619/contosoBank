@@ -8,6 +8,15 @@ namespace contosoBank.DataModels
 {
     public class Account
     {
+        [JsonProperty(PropertyName = "accountID")]
+        public int accountID { get; set; }
+
+        [JsonProperty(PropertyName = "name")]
+        public string accountName { get; set; }
+
+        [JsonProperty(PropertyName = "money")]
+        public double accountMoney { get; set; }
+
         [JsonProperty(PropertyName = "Id")]
         public string ID { get; set; }
 

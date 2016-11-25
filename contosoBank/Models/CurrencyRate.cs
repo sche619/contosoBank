@@ -22,7 +22,7 @@ namespace contosoBank.Models
             public double HKD { get; set; }
             public double HRK { get; set; }
             public double HUF { get; set; }
-            public int IDR { get; set; }
+            public double IDR { get; set; }
             public double ILS { get; set; }
             public double INR { get; set; }
             public double JPY { get; set; }
@@ -41,6 +41,7 @@ namespace contosoBank.Models
             public double TRY { get; set; }
             public double ZAR { get; set; }
             public double EUR { get; set; }
+            public double USD { get; set; }
         }
 
         public class RootObject

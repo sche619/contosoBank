@@ -1,83 +1,4 @@
-﻿/*using System;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Web.Http;
-using System.Web.Http.Description;
-using Microsoft.Bot.Connector;
-using Newtonsoft.Json;
-
-using Microsoft.ProjectOxford.Vision;
-using Microsoft.ProjectOxford.Vision.Contract;
-
-namespace contosoBank
-{
-    [BotAuthentication]
-    public class MessagesController : ApiController
-    {
-        /// <summary>
-        /// POST: api/Messages
-        /// Receive a message from a user and reply to it
-        /// </summary>
-        public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
-        {
-            if (activity.Type == ActivityTypes.Message)
-            {
-                ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
-                // calculate something for us to return
-                int length = (activity.Text ?? string.Empty).Length;
-
-                // return our reply to the user
-                Activity reply = activity.CreateReply($"You sent {activity.Text} which was {length} characters");
-                await connector.Conversations.ReplyToActivityAsync(reply);*
-
-                VisionServiceClient VisionServiceClient = new VisionServiceClient("81ca643d8b1d46d8a2c953c9afc3c147");
-
-                AnalysisResult analysisResult = await VisionServiceClient.DescribeAsync(activity.Attachments[0].ContentUrl, 3);
-
-                Activity reply = activity.CreateReply($"{analysisResult.Description.Captions[0].Text}");
-            }
-            else
-            {
-                HandleSystemMessage(activity);
-            }
-            var response = Request.CreateResponse(HttpStatusCode.OK);
-            return response;
-        }
-
-        private Activity HandleSystemMessage(Activity message)
-        {
-            if (message.Type == ActivityTypes.DeleteUserData)
-            {
-                // Implement user deletion here
-                // If we handle user deletion, return a real message
-            }
-            else if (message.Type == ActivityTypes.ConversationUpdate)
-            {
-                // Handle conversation state changes, like members being added and removed
-                // Use Activity.MembersAdded and Activity.MembersRemoved and Activity.Action for info
-                // Not available in all channels
-            }
-            else if (message.Type == ActivityTypes.ContactRelationUpdate)
-            {
-                // Handle add/remove from contact lists
-                // Activity.From + Activity.Action represent what happened
-            }
-            else if (message.Type == ActivityTypes.Typing)
-            {
-                // Handle knowing tha the user is typing
-            }
-            else if (message.Type == ActivityTypes.Ping)
-            {
-            }
-
-            return null;
-        }
-    }
-}*/
-
-using System;
+﻿using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -98,10 +19,7 @@ namespace contosoBank
     [BotAuthentication]
     public class MessagesController : ApiController
     {
-        /// <summary>
-        /// POST: api/Messages
-        /// Receive a message from a user and reply to it
-        /// </summary>
+
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
             if (activity.Type == ActivityTypes.Message)
@@ -113,59 +31,11 @@ namespace contosoBank
 
                 //3.Get/Set users property data
                 var userMessage = activity.Text;
+                string endOutput = "";
 
-                string endOutput = "Hello";
-
-                // calculate something for us to return
-                if (userData.GetProperty<bool>("SentGreeting"))
+                if (userMessage.ToLower().Equals("hello") || userMessage.ToLower().Equals("hi"))
                 {
-                    endOutput = "Hello again";
-                }
-                else
-                {
-                    userData.SetProperty<bool>("SentGreeting", true);
-                    await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
-                }
-                //
-
-                bool isWeatherRequest = true;
-
-                if (userMessage.ToLower().Contains("clear"))
-                {
-                    endOutput = "User data cleared";
-                    await stateClient.BotState.DeleteStateForUserAsync(activity.ChannelId, activity.From.Id);
-                    isWeatherRequest = false;
-                }
-
-                if (userMessage.Length > 9)
-                {
-                    if (userMessage.ToLower().Substring(0, 8).Equals("set home"))
-                    {
-                        string homeCity = userMessage.Substring(9);
-                        userData.SetProperty<string>("HomeCity", homeCity);
-                        await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
-                        endOutput = homeCity;
-                        isWeatherRequest = false;
-                    }
-                }
-
-                if (userMessage.ToLower().Equals("home"))
-                {
-                    string homecity = userData.GetProperty<string>("HomeCity");
-                    if (homecity == null)
-                    {
-                        endOutput = "Home City not assigned";
-                        isWeatherRequest = false;
-                    }
-                    else
-                    {
-                        activity.Text = homecity;
-                    }
-                }
-
-                if (userMessage.ToLower().Equals("msa"))
-                {
-                    Activity replyToConversation = activity.CreateReply("MSA information");
+                    Activity replyToConversation = activity.CreateReply("Welcome to Contoso Bank");
                     replyToConversation.Recipient = activity.From;
                     replyToConversation.Type = "message";
                     replyToConversation.Attachments = new List<Attachment>();
@@ -174,15 +44,24 @@ namespace contosoBank
                     List<CardAction> cardButtons = new List<CardAction>();
                     CardAction plButton = new CardAction()
                     {
-                        Value = "http://msa.ms",
-                        Type = "openUrl",
-                        Title = "MSA Website"
+                        Title = "Account info",
+                        Type = "postBack",
+                        Value = "my Account"//user display
                     };
                     cardButtons.Add(plButton);
+
+                    CardAction Button = new CardAction()
+                    {
+                        Title = "create new Account",
+                        Type = "postBack",
+                        Value = "create new Account"//user display
+                    };
+                    cardButtons.Add(Button);
+
                     ThumbnailCard plCard = new ThumbnailCard()
                     {
-                        Title = "Visit MSA",
-                        Subtitle = "The MSA Website is here",
+                        Title = "Visit Contoso Bank",
+                        Subtitle = "Your Account info is here",
                         Images = cardImages,
                         Buttons = cardButtons
                     };
@@ -191,7 +70,41 @@ namespace contosoBank
                     await connector.Conversations.SendToConversationAsync(replyToConversation);
 
                     return Request.CreateResponse(HttpStatusCode.OK);
+                }
 
+                bool isAccountRequest = true;
+
+                if (userMessage.ToLower().Contains("clear"))
+                {
+                    endOutput = "User data cleared";
+                    await stateClient.BotState.DeleteStateForUserAsync(activity.ChannelId, activity.From.Id);
+                    isAccountRequest = false;
+                }
+
+                //if (userMessage.Length > 12)
+                //{
+                //    if (userMessage.ToLower().Substring(0, 11).Equals("set account"))
+                //    {
+                //        string defaultAccount = userMessage.Substring(12);
+                //        userData.SetProperty<string>("DefaultAccount", defaultAccount);
+                //        await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
+                //        endOutput = defaultAccount;
+                //        isAccountRequest = false;
+                //    }
+                //}
+
+                if (userMessage.ToLower().Equals("my account"))
+                {
+                    string defaultAccount = userData.GetProperty<string>("DefaultAccount");
+                    if (defaultAccount == null)
+                    {
+                        endOutput = "Default Account not assigned";
+                        isAccountRequest = false;
+                    }
+                    else
+                    {
+                        activity.Text = defaultAccount;
+                    }
                 }
 
                 if (userMessage.ToLower().Equals("get account"))
@@ -200,98 +113,68 @@ namespace contosoBank
                     endOutput = "";
                     foreach (Account a in accounts)
                     {
-                        endOutput += "[" + a.Date + "] Happiness " + a.Happiness + ", Sadness " + a.Sadness + "\n\n";
+                        //endOutput += "[" + a.Date + "] Happiness " + a.Happiness + ", Sadness " + a.Sadness + "\n\n";
+                        endOutput += "[" + a.accountID + "] " + a.accountName + " balance: $" + a.accountMoney + "\n\n";
                     }
-                    isWeatherRequest = false;
-
+                    isAccountRequest = false;
                 }
 
                 if (userMessage.ToLower().Equals("new account"))
                 {
                     Account account = new Account()
                     {
-                        Anger = 0.1,
-                        Contempt = 0.2,
-                        Disgust = 0.3,
-                        Fear = 0.3,
+                        accountID = 00000001,
+                        //accountName = nickname,
+                        accountMoney = 0.00,
+                        /*
                         Happiness = 0.3,
                         Neutral = 0.2,
                         Sadness = 0.4,
-                        Surprise = 0.4,
+                        Surprise = 0.4,*/
                         Date = DateTime.Now
                     };
 
                     await AzureManager.AzureManagerInstance.AddAccount(account);
 
-                    isWeatherRequest = false;
+                    isAccountRequest = false;
 
-                    endOutput = "New account added [" + account.Date + "]";
+                    endOutput = "New account added [" + account.accountID + "]";
                 }
 
-                //3.
-                if (!isWeatherRequest)
+                if (userData.GetProperty<bool>("setCurrency"))
                 {
-                    // return our reply to the user
-                    Activity infoReply = activity.CreateReply(endOutput);
-
-                    await connector.Conversations.ReplyToActivityAsync(infoReply);
-
-                }
-                else
-                {
+                    //endOutput = "CURRENCY";
+                    userData.SetProperty<bool>("setCurrency", false);
+                    await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
+                    var userInput = userMessage.Split();
+                    string baseCurrency = userInput[0];
+                    string exchangeCurrency = userInput[1];
 
                     CurrencyRate.RootObject rootObject;
 
                     HttpClient client = new HttpClient();
-                    string x = await client.GetStringAsync(new Uri("http://api.fixer.io/latest?base=NZD"));//baseCurrency
+                    string x = await client.GetStringAsync(new Uri("http://api.fixer.io/latest?base=" + baseCurrency));//baseCurrency
 
                     rootObject = JsonConvert.DeserializeObject<CurrencyRate.RootObject>(x);
 
-                    //string baseCurrency = rootObject.@base;
-                    string date = rootObject.date;
-                    /*
-                    string temp = rootObject.main.temp + "°C";
-                    string pressure = rootObject.main.pressure + "hPa";
-                    string humidity = rootObject.main.humidity + "%";
-                    string wind = rootObject.wind.deg + "°";
-                    */
-
-                    // added fields
-                    string icon = rootObject.weather[0].icon;
-                    int cityId = rootObject.id;
-
-                    // return our reply to the user
-                    Activity weatherReply = activity.CreateReply($"Current weather for {cityName}");
-                    weatherReply.Recipient = activity.From;
-                    weatherReply.Type = "message";
-                    weatherReply.Attachments = new List<Attachment>();
-
-                    List<CardImage> cardImages = new List<CardImage>();
-                    cardImages.Add(new CardImage(url: "http://openweathermap.org/img/w/" + icon + ".png"));
-
-                    List<CardAction> cardButtons = new List<CardAction>();
-                    CardAction plButton = new CardAction()
-                    {
-                        Value = "https://openweathermap.org/city/" + cityId,
-                        Type = "openUrl",
-                        Title = "More Info"
-                    };
-                    cardButtons.Add(plButton);
-
-                    ThumbnailCard plCard = new ThumbnailCard()
-                    {
-                        Title = cityName + " Weather",
-                        Subtitle = "Temperature " + temp + ", pressure " + pressure + ", humidity  " + humidity + ", wind speeds of " + wind,
-                        Images = cardImages,
-                        Buttons = cardButtons
-                    };
-
-                    Attachment plAttachment = plCard.ToAttachment();
-                    weatherReply.Attachments.Add(plAttachment);
-                    await connector.Conversations.SendToConversationAsync(weatherReply);
+                    endOutput = rootObject.rates.USD.ToString();
+                    //endOutput = "currency";
+                    await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
 
                 }
+
+                if (userMessage.ToLower().Equals("exchange rate"))
+                {
+                    endOutput = "Please enter a base currency and an exchange currency";
+                    userData.SetProperty<bool>("setCurrency", true);
+                    await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
+
+                }
+
+                Activity infoReply = activity.CreateReply(endOutput);
+                await connector.Conversations.ReplyToActivityAsync(infoReply);
             }
+
             else
             {
                 HandleSystemMessage(activity);

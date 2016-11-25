@@ -90,14 +90,29 @@ namespace contosoBank
             }
         }
 
+        //Create
         public async Task AddAccount(Account account)
         {
             await this.accountTable.InsertAsync(account);
         }
 
+        //Read
         public async Task<List<Account>> GetAccounts()
         {
             return await this.accountTable.ToListAsync();
         }
+
+        //Update
+        public async Task UpdateAccount(Account account)
+        {
+            await this.accountTable.UpdateAsync(account);
+        }
+
+        //Delete
+        public async Task DeleteAccount(Account account)
+        {
+            await this.accountTable.DeleteAsync(account);
+        }
+
     }
 }
